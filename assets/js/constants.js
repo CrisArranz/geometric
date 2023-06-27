@@ -1,0 +1,6 @@
+const BACKGROUND_IMAGE_SPEED_MODE = 0.05;
+
+const KEY_UP = 38;
+
+const WIDTH_GEOMETRIC = 80;
+const HEIGHT_GEOMETRIC = 80;
