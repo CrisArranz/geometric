@@ -5,8 +5,8 @@ class Floor extends animatedSprite {
 
   move() {
     this.positionX -= FLOOR_IMAGE_SPEED_MODE;
-    if (this.positionX < -this.width) {
-      this.positionX = this.width - 2;
+    if (this.positionX === -this.width) {
+      this.positionX = this.width;
     }
   }
 }
