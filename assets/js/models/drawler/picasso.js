@@ -21,7 +21,7 @@ class Picasso {
         this.positionY,
         this.width,
         this.height
-      )
+      );
     }
   }
 }
