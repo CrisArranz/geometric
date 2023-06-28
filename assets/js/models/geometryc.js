@@ -1,41 +1,21 @@
-class Geometryc{
+class Geometryc extends animatedSprite {
   constructor(context) {
-    this.context = context;
-    this.positionX = 35;
-    this.positionY = this.context.canvas.height - 120;
-
-    this.width = WIDTH_GEOMETRIC;
-    this.height = HEIGHT_GEOMETRIC;
-
+    super(context, GEOMETRYC_START_POSITION, context.canvas.height - HEIGHT_FLOOR, WIDTH_GEOMETRIC, HEIGHT_GEOMETRIC, "/assets/images/character.png");
     this.gravity = 1;
-
     this.velocityY = 0;
-  }
-
-  draw() {
-    this.context.fillRect(this.positionX, this.positionY, this.width, this.height);
-    this.context.beginPath();
-    this.context.moveTo(500, this.positionY + 50);
-    this.context.lineTo(460, this.positionY + this.width);
-    this.context.lineTo(540, this.positionY + this.width);
-    this.context.closePath();
-
-    // the fill color
-    this.context.fillStyle = "#FFCC00";
-    this.context.fill();
   }
 
   move() {
     this.velocityY += this.gravity;
     this.positionY += this.velocityY;
 
-    if (this.positionY > this.context.canvas.height - 120) {
-      this.positionY = this.context.canvas.height - 120;
+    if (this.positionY > this.context.canvas.height - HEIGHT_FLOOR) {
+      this.positionY = this.context.canvas.height - HEIGHT_FLOOR;
     }
   }
 
   onKeyDown() {
-    if (this.positionY === this.context.canvas.height - 120) {
+    if (this.positionY === this.context.canvas.height - HEIGHT_FLOOR) {
       this.velocityY = -20;
     }
   }
