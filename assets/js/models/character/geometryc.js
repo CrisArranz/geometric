@@ -8,6 +8,7 @@ class Geometryc extends animatedSprite {
   move() {
     this.velocityY += this.gravity;
     this.positionY += this.velocityY;
+    this.angle += 10;
 
     if (this.positionY > this.context.canvas.height - HEIGHT_FLOOR) {
       this.positionY = this.context.canvas.height - HEIGHT_FLOOR;
@@ -16,7 +17,7 @@ class Geometryc extends animatedSprite {
 
   onKeyDown() {
     if (this.positionY === this.context.canvas.height - HEIGHT_FLOOR) {
-      this.velocityY = -20;
+      this.velocityY = -JUMP_VELOCITY;
     }
   }
 
