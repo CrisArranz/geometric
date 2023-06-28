@@ -1,7 +1,5 @@
-class Obstacle {
-  constructor(context, positionX, positionY, width, height) {
-    this.context = context;
-    this.positionX = positionX;
-    this.positionY = positionY;
+class Obstacle extends animatedSprite {
+  constructor(context, positionX, positionY, image) {
+    super(context, positionX, positionY, context.canvas.width, HEIGHT_FLOOR, image);
   }
 }
