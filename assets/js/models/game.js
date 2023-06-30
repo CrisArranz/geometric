@@ -19,8 +19,6 @@ class Game {
 
   start() {
     this.audio.play();
-    //this.addObstacles();
-    console.log((Math.floor(this.audio.duration) + 1) * 1000)
     if (!this.intervalId) {
       this.intervalId = setInterval(() => {
         this.timeLaps++;
@@ -29,8 +27,8 @@ class Game {
         this.draw();
         this.checkCollisions();
         this.clearObstacles();
+        this.level();
         if ((Math.floor(this.audio.duration) + 5) * this.framePerSecond < this.timeLaps) {
-          console.log(this.timeLaps)
           this.gameOver();
         }
       }, 1000 / this.framePerSecond);
@@ -69,8 +67,51 @@ class Game {
     this.player.onKeyDown();
   }
 
-  addObstacles() {
-    this.obstacles.push(new Rectangle(this.context, this.context.canvas.width));
+  addObstacles(type) {
+    switch(type) {
+      case "B1":
+        this.obstacles.push(new Block(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR, WIDTH_BLOCK_OBSTACLE, HEIGHT_BLOCK_OBSTACLE, "/assets/images/B1.png"));
+        break;
+      case "B2":
+        this.obstacles.push(new Block(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR - HEIGHT_GEOMETRIC, WIDTH_BLOCK_OBSTACLE, HEIGHT_BLOCK_OBSTACLE * 2, "/assets/images/B2.png"));
+        break;
+      case "B3":
+        this.obstacles.push(new Block(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR - (HEIGHT_GEOMETRIC * 2), WIDTH_BLOCK_OBSTACLE, HEIGHT_BLOCK_OBSTACLE * 3, "/assets/images/B3.png"));
+        break;
+      case "B4":
+        this.obstacles.push(new Block(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR - HEIGHT_GEOMETRIC, WIDTH_BLOCK_OBSTACLE, HEIGHT_BLOCK_OBSTACLE, "/assets/images/B1.png"));
+        break;
+    }
+  }
+
+  level() {
+    if (this.timeLaps === 20){
+      this.addObstacles("B1");
+    }
+    if (this.timeLaps === 40){
+      this.addObstacles("B3");
+    }
+    if (this.timeLaps === 60) {
+      this.addObstacles("B2");
+    }
+    if (this.timeLaps === 80) {
+      this.addObstacles("B1");
+    }
+    if (this.timeLaps === 385){
+      this.addObstacles("B4");
+    }
+    if (this.timeLaps === 415){
+      this.addObstacles("B1");
+    }
+    if (this.timeLaps === 450){
+      this.addObstacles("B4");
+    }
+    if (this.timeLaps === 460){
+      this.addObstacles("B4");
+    }
+    if (this.timeLaps === 470){
+      this.addObstacles("B4");
+    }
   }
 
   clearObstacles() {
@@ -78,7 +119,7 @@ class Game {
   }
 
   checkCollisions() {
-    if (this.obstacles.some(obstacle => obstacle.checkCollision(this.player))) {
+    if (this.obstacles.some(obstacle => this.player.checkCollision(obstacle))) {
       this.gameOver(); 
     }
   }
