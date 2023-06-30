@@ -2,9 +2,8 @@ class Game {
   constructor(canvasId) {
     this.context = document.getElementById(canvasId).getContext("2d");
 
-    this.geometryc = new Geometryc(this.context);
+    this.player = new Geometryc(this.context);
     this.obstacles = [];
-    this.obstacles.push(new Rectangle(this.context));
     this.firstBackground = new Background(this.context);
     this.secondBackground = new Background(this.context, this.context.canvas.width);
     this.firstFloor = new Floor(this.context, 0, this.context.canvas.height - HEIGHT_FLOOR + HEIGHT_GEOMETRIC);
@@ -14,22 +13,33 @@ class Game {
     this.intervalId = null;
     this.audio = new Audio("/assets/audio/track1.ogg");
     this.audio.volume = 0.2;
+
+    this.timeLaps = 0;
   }
 
   start() {
     this.audio.play();
+    //this.addObstacles();
+    console.log((Math.floor(this.audio.duration) + 1) * 1000)
     if (!this.intervalId) {
       this.intervalId = setInterval(() => {
+        this.timeLaps++;
         this.clear();
         this.move();
         this.draw();
+        this.checkCollisions();
         this.clearObstacles();
+        if ((Math.floor(this.audio.duration) + 5) * this.framePerSecond < this.timeLaps) {
+          console.log(this.timeLaps)
+          this.gameOver();
+        }
       }, 1000 / this.framePerSecond);
     }
   }
 
   stop() {
-    clearInterval(this.intervalId)
+    this.audio.pause();
+    clearInterval(this.intervalId);
     this.intervalId = null;
   }
 
@@ -42,7 +52,7 @@ class Game {
     this.secondBackground.move();
     this.firstFloor.move();
     this.secondFloor.move();
-    this.geometryc.move();
+    this.player.move();
     this.obstacles.forEach(obstacle => obstacle.move());
   }
 
@@ -51,15 +61,31 @@ class Game {
     this.secondBackground.draw();
     this.firstFloor.draw();
     this.secondFloor.draw();
-    this.geometryc.draw();
+    this.player.draw();
     this.obstacles.forEach(obstacle => obstacle.draw());
   }
 
   onKeyDown() {
-    this.geometryc.onKeyDown();
+    this.player.onKeyDown();
+  }
+
+  addObstacles() {
+    this.obstacles.push(new Rectangle(this.context, this.context.canvas.width));
   }
 
   clearObstacles() {
-    this.obstacles = this.obstacles.filter(obstacle => obstacle.isVisible())
+    this.obstacles = this.obstacles.filter(obstacle => obstacle.isVisible());
+  }
+
+  checkCollisions() {
+    if (this.obstacles.some(obstacle => obstacle.checkCollision(this.player))) {
+      this.gameOver(); 
+    }
+  }
+
+  gameOver() {
+    this.audio.pause();
+    clearInterval(this.intervalId);
+    this.intervalId = null;
   }
 }
