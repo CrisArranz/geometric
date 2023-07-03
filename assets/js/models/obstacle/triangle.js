@@ -1,0 +1,9 @@
+class Triangle extends Obstacle {
+  constructor(context, positionX, positionY, width, height, image) {
+    super(context, positionX, positionY, width, height, image);
+  }
+
+  move() {
+    this.positionX -= this.velocityX;
+  }
+}

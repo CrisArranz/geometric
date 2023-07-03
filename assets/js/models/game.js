@@ -81,6 +81,12 @@ class Game {
       case "B4":
         this.obstacles.push(new Block(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR - HEIGHT_GEOMETRIC, WIDTH_BLOCK_OBSTACLE, HEIGHT_BLOCK_OBSTACLE, "/assets/images/B1.png"));
         break;
+      case "Base":
+        this.obstacles.push(new Block(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR - HEIGHT_GEOMETRIC, WIDTH_BLOCK_OBSTACLE, HEIGHT_BLOCK_OBSTACLE / 2, "/assets/images/B1.png"));
+        break;
+      case "T1":
+        this.obstacles.push(new Triangle(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR + (HEIGHT_BLOCK_OBSTACLE / 2), WIDTH_BLOCK_OBSTACLE / 2, HEIGHT_BLOCK_OBSTACLE / 2, "/assets/images/T1.png"));
+        break;
     }
   }
 
@@ -97,20 +103,18 @@ class Game {
     if (this.timeLaps === 80) {
       this.addObstacles("B1");
     }
-    if (this.timeLaps === 385){
-      this.addObstacles("B4");
-    }
     if (this.timeLaps === 415){
       this.addObstacles("B1");
     }
     if (this.timeLaps === 450){
-      this.addObstacles("B4");
+      this.addObstacles("Base");
+      this.addObstacles("B1");
     }
     if (this.timeLaps === 460){
-      this.addObstacles("B4");
+      this.addObstacles("T1");
     }
-    if (this.timeLaps === 470){
-      this.addObstacles("B4");
+    if (this.timeLaps === 465){
+      this.addObstacles("T1");
     }
   }
 
