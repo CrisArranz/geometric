@@ -33,7 +33,7 @@ class Geometryc extends animatedSprite {
     const collisionDown = obstacle.positionY + obstacle.height > this.positionY;
 
     if (collisionLeft && collisionRight && collisionUp && collisionDown) {
-      if (obstacle.positionY >= (this.positionY + this.height) - PIXEL_VARIANT || obstacle.positionY === this.positionY + this.height) {
+      if ((obstacle.positionY >= (this.positionY + this.height) - PIXEL_VARIANT || obstacle.positionY === this.positionY + this.height) && obstacle instanceof Block) {
         this.positionY0 = obstacle.positionY - this.height;
         this.velocityY = 0;
         return false;
