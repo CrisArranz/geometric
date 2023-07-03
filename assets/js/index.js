@@ -1,13 +1,8 @@
-const game = new Game("geometric");
-
 document.getElementById("btn-start").addEventListener("click",() => {
+  const game = new Game("geometric");
   game.start();
-});
 
-document.getElementById("btn-stop").addEventListener("click",() => {
-  game.stop();
-});
-
-window.addEventListener("keydown", () => {
-  game.onKeyDown();
+  window.addEventListener("keydown", () => {
+    game.onKeyDown();
+  });
 });
