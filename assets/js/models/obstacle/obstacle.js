@@ -4,6 +4,10 @@ class Obstacle extends animatedSprite {
     this.velocityX = OBSTACLE_VELOCITY;
   }
 
+  move() {
+    this.positionX -= this.velocityX;
+  }
+
   isVisible() {
     return this.positionX < this.context.canvas.width && this.positionX > 0 - this.width;
   }
