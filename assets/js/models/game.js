@@ -1,5 +1,5 @@
 class Game {
-  constructor(canvasId) {
+  constructor(canvasId, onGameOver) {
     this.context = document.getElementById(canvasId).getContext("2d");
 
     this.player = new Geometryc(this.context);
@@ -15,9 +15,12 @@ class Game {
     this.audio.volume = 0.2;
 
     this.timeLaps = 0;
+    this.progress = 0;
+    this.onGameOver = onGameOver;
   }
 
   start() {
+    console.log(DURATION_SONG)
     this.audio.play();
     if (!this.intervalId) {
       this.intervalId = setInterval(() => {
@@ -27,9 +30,12 @@ class Game {
         this.draw();
         this.checkCollisions();
         this.clearObstacles();
-        this.level();
-        if ((Math.floor(this.audio.duration) + 5) * this.framePerSecond < this.timeLaps) {
+        //this.level();
+        if (DURATION_SONG * this.framePerSecond < this.timeLaps) {
           this.gameOver();
+        }
+        if (this.progress / 60 < DURATION_SONG) {
+          this.progress++;
         }
       }, 1000 / this.framePerSecond);
     }
@@ -59,8 +65,24 @@ class Game {
     this.secondBackground.draw();
     this.firstFloor.draw();
     this.secondFloor.draw();
+    this.drawProgress();
     this.player.draw();
     this.obstacles.forEach(obstacle => obstacle.draw());
+  }
+
+  drawProgress() {
+    this.context.save();
+    this.context.beginPath();
+    this.context.lineWidth = 6;
+    this.context.font = "35px geometryc-dash";
+    this.context.rect(5, 5, this.context.canvas.width - 10, 40);
+    this.context.fillStyle = "green";
+    this.context.fillRect(9, 9, ((this.context.canvas.width - 15) * Math.floor(Math.floor(this.progress / 60) * 100 / DURATION_SONG)) / 100, 30);
+    this.context.fillStyle = "white";
+    this.context.fillText(`${Math.floor(Math.floor(this.progress / 60) * 100 / DURATION_SONG)}%`, this.context.canvas.width / 2 - 35, 35, 150);
+    this.context.stroke();
+    this.context.closePath();
+    this.context.restore();        
   }
 
   onKeyDown() {
@@ -139,7 +161,7 @@ class Game {
 
   checkCollisions() {
     if (this.obstacles.some(obstacle => this.player.checkCollision(obstacle))) {
-      this.gameOver(); 
+      this.gameOver();
     }
   }
 
@@ -147,5 +169,8 @@ class Game {
     this.audio.pause();
     clearInterval(this.intervalId);
     this.intervalId = null;
+    setTimeout(() => {
+      this.onGameOver();
+    }, 2000);
   }
 }
