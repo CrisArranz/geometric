@@ -4,6 +4,7 @@ class Geometryc extends animatedSprite {
     this.positionY0 = context.canvas.height - HEIGHT_FLOOR;
     this.gravity = GRAVITY;
     this.velocityY = 0;
+    this.canJump = true;
   }
 
   move() {
@@ -13,12 +14,14 @@ class Geometryc extends animatedSprite {
     if (this.positionY > this.positionY0) {
       this.positionY = this.positionY0;
       this.velocityY = 0;
+      this.canJump = true;
     }
   }
 
   onKeyDown() {
-    if (this.positionY === this.positionY0) {
+    if (this.canJump) {
       this.velocityY = -JUMP_VELOCITY;
+      this.canJump = false;
     }
   }
 
@@ -36,6 +39,7 @@ class Geometryc extends animatedSprite {
       if ((obstacle.positionY >= (this.positionY + this.height) - PIXEL_VARIANT || obstacle.positionY === this.positionY + this.height) && obstacle instanceof Block) {
         this.positionY0 = obstacle.positionY - this.height;
         this.velocityY = 0;
+        this.canJump = true;
         return false;
       }
       return true;
