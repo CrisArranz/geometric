@@ -13,6 +13,14 @@ body{
   color: white;
 }
 
+.flex {
+  display: flex;
+}
+
+.none {
+  display: none;
+}
+
 .container-intro {
   position: absolute;
   top: 15vh;
@@ -89,7 +97,6 @@ body{
   position: absolute;
   top: 15vh;
   left: 25vw;
-  display: none;
   flex-direction: column;
   gap: 30px;
   align-items: center;
