@@ -1,14 +1,95 @@
+@font-face {
+  font-family: 'geometryc-dash';
+  src: url('pusab.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body{
   position: relative;
   margin: 0;
   padding: 0;
+  font-family: "geometryc-dash";
+  color: white;
+}
+
+.container-intro {
+  position: absolute;
+  top: 15vh;
+  left: 25vw;
+  width: 1080px; 
+  height: 720px;
+  object-fit: cover;
+  background-image: url("/assets/images/background-intro.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.container-intro section:first-child{
+  width: inherit;
+  position: relative;
+}
+
+.container-intro section:first-child img:first-child{
+  width: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.container-intro section:first-child img:nth-child(2){
+  width: 200px;
+  position: absolute;
+  top: 25vh;
+  left: 18.5vw;
+  transform: scale(1);
+  transition: .3s ease-in-out;
+}
+
+.container-intro section:first-child img:nth-child(2):hover, .container-intro section:nth-child(2) img:hover{
+  transform: scale(1.2);
+}
+
+.container-intro section:nth-child(2){
+  width: inherit;
+  position: relative;
+}
+
+.container-intro section:nth-child(2) img{
+  width: 100px;
+  position: absolute;
+  top: 550px;
+}
+
+.container-intro section:nth-child(2) img:first-child{
+  left: 30%;
+  transition: .3s ease-in-out;
+}
+
+.container-intro section:nth-child(2) img:nth-child(2){
+  left: 45%;
+  transition: .3s ease-in-out;
+}
+
+.container-intro section:nth-child(2) img:nth-child(3){
+  left: 60%;
+  transition: .3s ease-in-out;
+}
+
+.container-intro p{
+  width: inherit;
+  position: absolute;
+  top: 650px;
+  left: 27.5%;
+  font-size: larger;
 }
 
 .container-game{
   position: absolute;
   top: 15vh;
   left: 25vw;
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 30px;
   align-items: center;
@@ -20,4 +101,9 @@ body{
   padding: 10px;
   font-weight: bold;
   font-size: large;
+  transition: 1s;
+}
+
+.container-game .container-buttons button:hover{
+  background-color: red;
 }
