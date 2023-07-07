@@ -35,14 +35,14 @@ body{
   width: inherit;
   position: absolute;
   top: 0;
-  left: 0;
+  left: -15px;
 }
 
 .container-intro section:first-child img:nth-child(2){
   width: 200px;
   position: absolute;
   top: 25vh;
-  left: 18.5vw;
+  left: 18vw;
   transform: scale(1);
   transition: .3s ease-in-out;
 }
@@ -63,7 +63,7 @@ body{
 }
 
 .container-intro section:nth-child(2) img:first-child{
-  left: 30%;
+  left: 28%;
   transition: .3s ease-in-out;
 }
 
@@ -73,7 +73,7 @@ body{
 }
 
 .container-intro section:nth-child(2) img:nth-child(3){
-  left: 60%;
+  left: 62%;
   transition: .3s ease-in-out;
 }
 
@@ -81,7 +81,7 @@ body{
   width: inherit;
   position: absolute;
   top: 650px;
-  left: 27.5%;
+  left: 30%;
   font-size: larger;
 }
 
