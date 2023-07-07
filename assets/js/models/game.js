@@ -45,7 +45,7 @@ class Game {
     this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height)
   }
 
-  move () {
+  move() {
     this.firstBackground.move();
     this.secondBackground.move();
     this.firstFloor.move();
@@ -85,7 +85,10 @@ class Game {
         this.obstacles.push(new Block(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR - HEIGHT_GEOMETRIC, WIDTH_BLOCK_OBSTACLE, HEIGHT_BLOCK_OBSTACLE / 2, "/assets/images/B1.png"));
         break;
       case "T1":
-        this.obstacles.push(new Triangle(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR + (HEIGHT_BLOCK_OBSTACLE / 2), WIDTH_BLOCK_OBSTACLE / 2, HEIGHT_BLOCK_OBSTACLE / 2, "/assets/images/T1.png"));
+        this.obstacles.push(new Triangle(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR + HEIGHT_TRIANGLE_OBSTACLE, WIDTH_TRIANGLE_OBSTACLE, HEIGHT_TRIANGLE_OBSTACLE, "/assets/images/T1.png"));
+        break;
+      case "Spike":
+        this.obstacles.push(new Spike(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR + HEIGHT_SPIKE_OBSTACLE, WIDTH_SPIKE_OBSTACLE, HEIGHT_SPIKE_OBSTACLE, "/assets/images/spike.png"));
         break;
     }
   }
@@ -111,10 +114,22 @@ class Game {
       this.addObstacles("B1");
     }
     if (this.timeLaps === 460){
-      this.addObstacles("T1");
+      this.addObstacles("Base");
     }
-    if (this.timeLaps === 465){
-      this.addObstacles("T1");
+    if (this.timeLaps === 470) {
+      this.addObstacles("Spike"); 
+    }
+    if (this.timeLaps === 500) {
+      this.addObstacles("Base"); 
+    }
+    if (this.timeLaps === 510) {
+      this.addObstacles("T1"); 
+    }
+    if (this.timeLaps === 515) {
+      this.addObstacles("T1"); 
+    }
+    if (this.timeLaps === 520) {
+      this.addObstacles("T1"); 
     }
   }
 
