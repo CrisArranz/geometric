@@ -23,3 +23,5 @@ const OBSTACLE_VELOCITY = 7.5;
 
 const GRAVITY = 1;
 const JUMP_VELOCITY = 20 * GRAVITY;
+
+const DURATION_SONG = 86;
