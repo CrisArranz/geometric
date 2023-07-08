@@ -1,5 +1,5 @@
 class Game {
-  constructor(canvasId, onGameOver) {
+  constructor(canvasId, onGameOver, onSaveProgress) {
     this.context = document.getElementById(canvasId).getContext("2d");
 
     this.player = new Geometryc(this.context);
@@ -11,16 +11,27 @@ class Game {
 
     this.framePerSecond = 60;
     this.intervalId = null;
-    this.audio = new Audio("/assets/audio/track1.ogg");
-    this.audio.volume = 0.2;
+    this.audios = {
+      levels: {
+        one: {
+          audio: new Audio("/assets/audio/track1.ogg"),
+          volumen: 0.2
+        }
+      },
+      dead: {
+        audio: new Audio("/assets/audio/explode.mp3"),
+        volumen: 0.2
+      }
+    }
 
     this.timeLaps = 0;
     this.progress = 0;
     this.onGameOver = onGameOver;
+    this.onSaveProgress = onSaveProgress;
   }
 
   start() {
-    this.audio.play();
+    this.audios.levels.one.audio.play();
     if (!this.intervalId) {
       this.intervalId = setInterval(() => {
         this.timeLaps++;
@@ -127,30 +138,93 @@ class Game {
     if (this.timeLaps === 80) {
       this.addObstacles("B1");
     }
-    if (this.timeLaps === 415){
+    if (this.timeLaps === 155){
       this.addObstacles("B1");
     }
-    if (this.timeLaps === 450){
+    if (this.timeLaps === 190){
       this.addObstacles("Base");
       this.addObstacles("B1");
     }
-    if (this.timeLaps === 460){
+    if (this.timeLaps === 200){
       this.addObstacles("Base");
     }
-    if (this.timeLaps === 470) {
+    if (this.timeLaps === 210) {
       this.addObstacles("Spike"); 
     }
-    if (this.timeLaps === 500) {
+    if (this.timeLaps === 240) {
       this.addObstacles("Base"); 
     }
-    if (this.timeLaps === 510) {
+    if (this.timeLaps === 250) {
       this.addObstacles("T1"); 
     }
-    if (this.timeLaps === 515) {
+    if (this.timeLaps === 255) {
       this.addObstacles("T1"); 
     }
-    if (this.timeLaps === 520) {
+    if (this.timeLaps === 260) {
       this.addObstacles("T1"); 
+    }
+    if (this.timeLaps === 310){
+      this.addObstacles("Spike");
+    }
+    if (this.timeLaps === 315){
+      this.addObstacles("Base");
+    }
+    if (this.timeLaps === 325){
+      this.addObstacles("Base");
+    }
+    if (this.timeLaps === 355){
+      this.addObstacles("Spike");
+    }
+    if (this.timeLaps === 375){
+      this.addObstacles("B3");
+    }
+    if (this.timeLaps === 395) {
+      this.addObstacles("B1");
+    }
+    if (this.timeLaps === 415) {
+      this.addObstacles("Spike");
+    }
+    if (this.timeLaps === 435) {
+      this.addObstacles("Base");
+    }
+    if (this.timeLaps === 495) {
+      this.addObstacles("T1");
+    }
+    if (this.timeLaps === 535) {
+      this.addObstacles("T1");
+    }
+    if (this.timeLaps === 540) {
+      this.addObstacles("T1");
+    }
+    if (this.timeLaps === 575) {
+      this.addObstacles("T1");
+    }
+    if (this.timeLaps === 580) {
+      this.addObstacles("T1");
+    }
+    if (this.timeLaps === 585) {
+      this.addObstacles("T1");
+    }
+    if (this.timeLaps === 650) {
+      this.addObstacles("B2");
+    }
+    if (this.timeLaps === 670) {
+      this.addObstacles("B1");
+    }
+    if (this.timeLaps === 690) {
+      this.addObstacles("B3");
+    }
+    if (this.timeLaps === 710) {
+      this.addObstacles("Base");
+    }
+    if (this.timeLaps === 730) {
+      this.addObstacles("B1");
+    }
+    if (this.timeLaps === 750) {
+      this.addObstacles("Spike");
+    }
+    if (this.timeLaps === 775) {
+      this.addObstacles("Base");
     }
   }
 
@@ -160,14 +234,16 @@ class Game {
 
   checkCollisions() {
     if (this.obstacles.some(obstacle => this.player.checkCollision(obstacle))) {
+      this.audios.dead.audio.play();
       this.gameOver();
     }
   }
 
   gameOver() {
-    this.audio.pause();
+    this.audios.levels.one.audio.pause();
     clearInterval(this.intervalId);
     this.intervalId = null;
+    this.onSaveProgress(Math.floor(Math.floor(this.progress / 60) * 100 / DURATION_SONG));
     setTimeout(() => {
       this.onGameOver();
     }, 2000);
