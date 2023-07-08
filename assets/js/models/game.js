@@ -20,7 +20,6 @@ class Game {
   }
 
   start() {
-    console.log(DURATION_SONG)
     this.audio.play();
     if (!this.intervalId) {
       this.intervalId = setInterval(() => {
@@ -30,7 +29,7 @@ class Game {
         this.draw();
         this.checkCollisions();
         this.clearObstacles();
-        //this.level();
+        this.level();
         if (DURATION_SONG * this.framePerSecond < this.timeLaps) {
           this.gameOver();
         }
