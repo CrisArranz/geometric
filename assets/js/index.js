@@ -1,7 +1,7 @@
 window.addEventListener("DOMContentLoaded", () => {
   document.querySelector("audio").volume = 0.1;
   document.getElementById("start-btn").addEventListener("click", () => {
-    const audio = new Audio("/assets/audio/buttons.mp3");
+    const audio = new Audio("./assets/audio/buttons.mp3");
     audio.volume = 0.3;
     audio.play();
     document.querySelector("audio").volume = 0;

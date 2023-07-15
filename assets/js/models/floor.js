@@ -1,6 +1,6 @@
 class Floor extends animatedSprite {
   constructor(context, positionX = 0, positionY = 0){
-    super(context, positionX, positionY, context.canvas.width, HEIGHT_FLOOR, "/assets/images/floor.png");
+    super(context, positionX, positionY, context.canvas.width, HEIGHT_FLOOR, "./assets/images/floor.png");
   }
 
   move() {
