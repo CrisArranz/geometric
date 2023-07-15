@@ -95,8 +95,8 @@ body{
 
 .container-game{
   position: absolute;
-  top: 15vh;
-  left: 25vw;
+  top: 10vh;
+  left: 22vw;
   flex-direction: column;
   gap: 30px;
   align-items: center;
