@@ -1,6 +1,6 @@
 class Background extends animatedSprite {
   constructor(context, positionX = 0, positionY = 0) {
-    super(context, positionX, positionY, context.canvas.width, context.canvas.height, "/assets/images/background.png");
+    super(context, positionX, positionY, context.canvas.width, context.canvas.height, "./assets/images/background.png");
   }
 
   move() {

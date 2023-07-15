@@ -1,6 +1,6 @@
 class Geometryc extends animatedSprite {
   constructor(context) {
-    super(context, GEOMETRYC_START_POSITION, context.canvas.height - HEIGHT_FLOOR, WIDTH_GEOMETRIC, HEIGHT_GEOMETRIC, "/assets/images/character.png");
+    super(context, GEOMETRYC_START_POSITION, context.canvas.height - HEIGHT_FLOOR, WIDTH_GEOMETRIC, HEIGHT_GEOMETRIC, "./assets/images/character.png");
     this.positionY0 = context.canvas.height - HEIGHT_FLOOR;
     this.gravity = GRAVITY;
     this.velocityY = 0;

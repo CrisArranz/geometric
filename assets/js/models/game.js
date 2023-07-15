@@ -14,12 +14,12 @@ class Game {
     this.audios = {
       levels: {
         one: {
-          audio: new Audio("/assets/audio/track1.ogg"),
+          audio: new Audio("./assets/audio/track1.ogg"),
           volumen: 0.2
         }
       },
       dead: {
-        audio: new Audio("/assets/audio/explode.mp3"),
+        audio: new Audio("./assets/audio/explode.mp3"),
         volumen: 0.2
       }
     }
@@ -102,25 +102,25 @@ class Game {
   addObstacles(type) {
     switch(type) {
       case "B1":
-        this.obstacles.push(new Block(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR, WIDTH_BLOCK_OBSTACLE, HEIGHT_BLOCK_OBSTACLE, "/assets/images/B1.png"));
+        this.obstacles.push(new Block(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR, WIDTH_BLOCK_OBSTACLE, HEIGHT_BLOCK_OBSTACLE, "./assets/images/B1.png"));
         break;
       case "B2":
-        this.obstacles.push(new Block(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR - HEIGHT_GEOMETRIC, WIDTH_BLOCK_OBSTACLE, HEIGHT_BLOCK_OBSTACLE * 2, "/assets/images/B2.png"));
+        this.obstacles.push(new Block(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR - HEIGHT_GEOMETRIC, WIDTH_BLOCK_OBSTACLE, HEIGHT_BLOCK_OBSTACLE * 2, "./assets/images/B2.png"));
         break;
       case "B3":
-        this.obstacles.push(new Block(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR - (HEIGHT_GEOMETRIC * 2), WIDTH_BLOCK_OBSTACLE, HEIGHT_BLOCK_OBSTACLE * 3, "/assets/images/B3.png"));
+        this.obstacles.push(new Block(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR - (HEIGHT_GEOMETRIC * 2), WIDTH_BLOCK_OBSTACLE, HEIGHT_BLOCK_OBSTACLE * 3, "./assets/images/B3.png"));
         break;
       case "B4":
-        this.obstacles.push(new Block(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR - HEIGHT_GEOMETRIC, WIDTH_BLOCK_OBSTACLE, HEIGHT_BLOCK_OBSTACLE, "/assets/images/B1.png"));
+        this.obstacles.push(new Block(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR - HEIGHT_GEOMETRIC, WIDTH_BLOCK_OBSTACLE, HEIGHT_BLOCK_OBSTACLE, "./assets/images/B1.png"));
         break;
       case "Base":
-        this.obstacles.push(new Block(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR - HEIGHT_GEOMETRIC, WIDTH_BLOCK_OBSTACLE, HEIGHT_BLOCK_OBSTACLE / 2, "/assets/images/B1.png"));
+        this.obstacles.push(new Block(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR - HEIGHT_GEOMETRIC, WIDTH_BLOCK_OBSTACLE, HEIGHT_BLOCK_OBSTACLE / 2, "./assets/images/B1.png"));
         break;
       case "T1":
-        this.obstacles.push(new Triangle(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR + HEIGHT_TRIANGLE_OBSTACLE, WIDTH_TRIANGLE_OBSTACLE, HEIGHT_TRIANGLE_OBSTACLE, "/assets/images/T1.png"));
+        this.obstacles.push(new Triangle(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR + HEIGHT_TRIANGLE_OBSTACLE, WIDTH_TRIANGLE_OBSTACLE, HEIGHT_TRIANGLE_OBSTACLE, "./assets/images/T1.png"));
         break;
       case "Spike":
-        this.obstacles.push(new Spike(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR + HEIGHT_SPIKE_OBSTACLE, WIDTH_SPIKE_OBSTACLE, HEIGHT_SPIKE_OBSTACLE, "/assets/images/spike.png"));
+        this.obstacles.push(new Spike(this.context, this.context.canvas.width, this.context.canvas.height - HEIGHT_FLOOR + HEIGHT_SPIKE_OBSTACLE, WIDTH_SPIKE_OBSTACLE, HEIGHT_SPIKE_OBSTACLE, "./assets/images/spike.png"));
         break;
     }
   }
