@@ -23,8 +23,8 @@ body{
 
 .container-intro {
   position: absolute;
-  top: 15vh;
-  left: 25vw;
+  top: 10vh;
+  left: 22vw;
   width: 1080px; 
   height: 720px;
   object-fit: cover;
@@ -49,8 +49,8 @@ body{
 .container-intro section:first-child img:nth-child(2){
   width: 200px;
   position: absolute;
-  top: 25vh;
-  left: 18vw;
+  top: 25.5vh;
+  left: 22.2vw;
   transform: scale(1);
   transition: .3s ease-in-out;
 }
